@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+ 
+	<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+ 
+    <title>DataTables Test</title>
+</head>
+<body>
+    <header>
+    <h1>DataTables Test</h1>
+    </header>
+
+ 
+ <script type="text/javascript" language="javascript" class="init">
+	 $(document).ready(function() {
+         $('#example').DataTable( {
+			"processing": true,
+			"serverSide": true,
+			"pageLength": 5,
+			ajax: {
+                 "processing": true,
+                 "url": "{% url 'my_ajax_url' %}",
+                 "dataSrc": ""
+             },
+			columns: [
+				{ data: 'fields.job_id' },
+				{ data: 'fields.start_date' },
+				{ data: 'fields.birth_date' },
+				{ data: 'fields.name' },
+				{ data: 'fields.position' },
+				{ data: 'fields.email' }
+			]
+		} );
+     } );
+ </script>
+
+ <section>
+    <table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Matricula</th>
+            <th>Data Admissao</th>
+            <th>Aniversario</th>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Matricula</th>
+            <th>Data Admissao</th>
+            <th>Aniversario</th>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Email</th>
+        </tr>
+    </tfoot>
+	</table>
+</section>
+ 
+</body>
+</html>

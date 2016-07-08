@@ -1,0 +1,38 @@
+[
+{
+    "model": "myapp.office",
+    "pk": 5,
+    "fields": {
+        "name": "Airi Satou",
+        "position": "Accountant",
+        "office": "Tokyo",
+        "age": 5407,
+        "start_date": "2008-11-28",
+        "salary": 162700.0
+    }
+},
+{
+    "model": "myapp.office",
+    "pk": 6,
+    "fields": {
+        "name": "Brielle Williamson",
+        "position": "Integration Specialist",
+        "office": "New York",
+        "age": 4804,
+        "start_date": "2012-12-02",
+        "salary": 372000.0
+    }
+},
+{
+    "model": "myapp.office",
+    "pk": 7,
+    "fields": {
+        "name": "Herrod Chandler",
+        "position": "Sales Assistant",
+        "office": "San Francisco",
+        "age": 9608,
+        "start_date": "2012-08-06",
+        "salary": 137500.0
+    }
+}
+]

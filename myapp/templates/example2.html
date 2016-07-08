@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+ 
+	<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+ 
+    <title>DataTables Test</title>
+</head>
+<body>
+    <header>
+    <h1>DataTables Test</h1>
+    </header>
+ 
+<script>
+	$(document).ready(function() {
+		$('#example').DataTable( {
+			"ajax": '{% static "data/arrays.txt" %}'
+		} );
+	} );
+</script>
+<section>
+    <table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+</table>
+    </section>
+ 
+</body>
+</html>
