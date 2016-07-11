@@ -20,10 +20,9 @@
          $('#example').DataTable( {
 			"processing": true,
 			"serverSide": true,
-			"pageLength": 5,
 			ajax: {
                  "processing": true,
-                 "url": "{% url 'my_ajax_url' %}"
+                 "url": "{% url 'vale_ajax_url' %}"
              },
 			columns: [
 				{ data: 'job_id' },

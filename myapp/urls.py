@@ -7,5 +7,5 @@ urlpatterns = [
 	url(r'^example1/$', views.example1, name='example1'),
 	url(r'^example2/$', views.example2, name='example2'),
 	url(r'^example3/$', views.example3, name='example3'),
-	url(r'^my_ajax_url$', views.myModel_asJson, name='my_ajax_url'),
+	url(r'^vale_ajax_url$', views.Vale_asJson, name='vale_ajax_url'),
 ]
