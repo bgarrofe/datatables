@@ -50,15 +50,15 @@ def Vale_asJson(request):
     filtered= total = query.count()
     
     #regex search
-    fieldnames = ['name', 'job_id']
-    
-    
+
     if value != '':
-        questions = [('name__contains', value), ('job_id__contains', value )]
-        q_list = [Q(x) for x in questions]  
-        qgroup = reduce(operator.or_, q_list)
-        query = query.filter(qgroup)
-        filtered = query.count()
+		fieldnames = ['name', 'job_id', 'department', 'position', 'email']
+		fieldnames2 = [x+'__contains' for x in fieldnames]
+		questions = [(x, value) for x in fieldnames2]
+		q_list = [Q(x) for x in questions]  
+		qgroup = reduce(operator.or_, q_list)
+		query = query.filter(qgroup)
+		filtered = query.count()
     
     #get final fields
     query = query.order_by(field)[start:end]
