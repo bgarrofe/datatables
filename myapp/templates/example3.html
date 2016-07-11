@@ -23,16 +23,15 @@
 			"pageLength": 5,
 			ajax: {
                  "processing": true,
-                 "url": "{% url 'my_ajax_url' %}",
-                 "dataSrc": ""
+                 "url": "{% url 'my_ajax_url' %}"
              },
 			columns: [
-				{ data: 'fields.job_id' },
-				{ data: 'fields.start_date' },
-				{ data: 'fields.birth_date' },
-				{ data: 'fields.name' },
-				{ data: 'fields.position' },
-				{ data: 'fields.email' }
+				{ data: 'job_id' },
+				{ data: 'start_date' },
+				{ data: 'birth_date' },
+				{ data: 'name' },
+				{ data: 'position' },
+				{ data: 'email' }
 			]
 		} );
      } );

@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from myapp.models import Person, Office, Vale
 from myapp.tables import PersonTable
 from django.core import serializers
+import json
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -28,22 +29,42 @@ def example3(request):
     return render(request, 'example3.html', {})
 	
 def myModel_asJson(request):
-	draw = request.GET.get('draw')
-	columns = request.GET.getlist('columns')
-	order = request.GET.get('order[0][dir]')
-	start = int(request.GET.get('start'))
-	length = int(request.GET.get('length'))
+    draw = request.GET.get('draw')
+    columns = request.GET.getlist('columns')
+    order = request.GET.get('order[0][dir]')
+    start = request.GET.get('start', default=0)
+    length = request.GET.get('length', default=5)
+    
+    field = "id"
+    
+    if order == "asc":
+        field = "id"
+    else:
+        field = "-id"
+        
+    end = 0
+    end = int(start) + int(length)
 	
-	#field = "id"
-	
-	if order == "asc":
-		field = "id"
-	else:
-		field = "-id"
-		
-	end = start+length
-	
-	object_list = Vale.objects.all().order_by(field)[start:end]
-	#object_list = Vale.objects.filter(pk=1) #or any kind of queryset
-	json = serializers.serialize('json', object_list)
-	return HttpResponse(json, content_type='application/json')
+    total = Vale.objects.count()
+    query = Vale.objects.order_by(field)[start:end]
+    
+    
+    data_objects = []
+    for q in query:
+        result = {}
+        result['job_id'] = q.job_id
+        result['start_date'] = q.start_date.isoformat()
+        result['birth_date'] = q.birth_date.isoformat()
+        result['name'] = q.name
+        result['department'] = q.department
+        result['position'] = q.position
+        result['email'] = q.email
+        data_objects.append(result)
+    
+    response_data = {}
+    response_data['draw'] = draw
+    response_data['recordsTotal'] = total
+    response_data['recordsFiltered'] = total
+    response_data['data'] = data_objects
+    
+    return HttpResponse(json.dumps(response_data), content_type='application/json')
